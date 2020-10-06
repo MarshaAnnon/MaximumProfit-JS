@@ -5,28 +5,24 @@ class MaximumProfit {
         let buyPrice = 0;
         let sellPrice = 0;
         let maxProfit = -1; //default for maxProfit
+        let changeBuyIndex = true;
+
         for(let i = 0; i < input.length -1; i++) {
-            
-
-            if (input[i] < input[i+1]) {
-                buyPrice = input[i]
-                sellPrice = input[i+1]
-                
-                let profit = (sellPrice - buyPrice);
-                
-                if (profit > maxProfit) {
-                    maxProfit = profit;
-                }
-            }
-
-            if (buyPrice > input[i+1]) {
-                buyPrice = input[i+1];
+            sellPrice = input[i+1]
+            if(changeBuyIndex) {
+                buyPrice = input[i];
+            } 
+            if(sellPrice < buyPrice) {
+                changeBuyIndex = true;
+                continue; // this will break out of the condition out of the loop. (speed efficient)
             } else {
-                sellPrice = input[i+1];
+                let tempProfit = sellPrice - buyPrice;
+                if(tempProfit > maxProfit) {
+                    maxProfit = tempProfit;
+                }
+                changeBuyIndex = false;
             }
-            
         }
-        // console.log(maxProfit)//maxProfit is 24
         return maxProfit;
     }
 }

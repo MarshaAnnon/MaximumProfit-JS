@@ -16,9 +16,13 @@ If no profit could have been made, return -1.
 We'll solve the challenge the following way:
 
 1. Iterate through each number in the list.
+
 2. At the ith index, get the i+1 index price and check if it is larger than the ith index price.
+
 3. If so, set buy_price = i and sell_price = i+1. Then calculate the profit: sell_price - buy_price.
+
 4. If a stock price is found that is cheaper than the current buy_price, set this to be the new buying price and continue from step 2.
+
 5. Otherwise, continue changing only the sell_price and keep buy_price set.
 
 This algorithm runs in linear time, making only one pass through the array, so the running time in the worst case is O(n).
